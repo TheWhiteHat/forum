@@ -8,19 +8,25 @@
 <body>
 <div>
     <h1>{{ board.name }}</h1>
-    <div><a href="{% url board-list %}">Home</a> &raquo; <a href="{% url board-detail board.pk %}">{{ board.name }}</a></div>
+    <div id="nav-bc"><a href="{% url board-list %}">Home</a> &raquo; <a href="{% url board-detail board.pk %}">{{ board.name }}</a></div>
 </div>
 
 {% if board.thread_set.all %}
-<div>
+<ul id="thread-list">
     {% for thread in board.thread_set.all %}
-    <div>
-        <h4><a href="{% url thread-detail thread.pk %}">{{ thread.name }}</a></h4>
-        <p>Started by <a href="{% url user-detail thread.creator.pk %}">{{ thread.creator.username }}</a></p>
-        <p>{{ thread.views }} views and {{ thread.post_set.count }} posts</p>
-    </div>
+    <li>
+        <dl>
+            <dt>
+                <h4><a href="{% url thread-detail thread.pk %}">{{ thread.name }}</a></h4>
+                <p>by <a href="{% url user-detail thread.creator.pk %}">{{ thread.creator.username }}</a> &raquo; {{ thread.created }}</p>
+            </dt>
+            <dd>{{ thread.post_set.count }} replies</dd>
+            <dd>{{ thread.views }} views</dd>
+            <dd>Last commenter eventually =3</dd>
+        </dl>
+    </li>
     {% endfor %}
-</div>
+</ul>
 {% else %}
     <p>No threads on this board =/</p>
 {% endif %}

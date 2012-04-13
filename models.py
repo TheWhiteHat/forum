@@ -11,6 +11,7 @@ class Thread(models.Model):
     name = models.CharField(max_length=126)
     board = models.ForeignKey(Board)
     creator = models.ForeignKey(User)
+    created = models.DateTimeField();
     posts = models.IntegerField()
     views = models.IntegerField()
     def __unicode__(self):
