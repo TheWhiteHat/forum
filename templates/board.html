@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ board.name }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}style.css">
+</head>
+<body>
+<div>
+    <h1>{{ board.name }}</h1>
+    <div><a href="{% url board-list %}">Home</a> &raquo; <a href="{% url board-detail board.pk %}">{{ board.name }}</a></div>
+</div>
+
+{% if board.thread_set.all %}
+<div>
+    {% for thread in board.thread_set.all %}
+    <div>
+        <h4><a href="{% url thread-detail thread.pk %}">{{ thread.name }}</a></h4>
+        <p>Started by <a href="{% url user-detail thread.creator.pk %}">{{ thread.creator.username }}</a></p>
+        <p>{{ thread.views }} views and {{ thread.post_set.count }} posts</p>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <p>No threads on this board =/</p>
+{% endif %}
+</body>
+</html>

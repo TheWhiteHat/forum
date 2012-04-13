@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Boards</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<div>
+    <h1>Boards</h1>
+</div>
+
+<div>
+{% if board_list %}
+    {% for board in board_list %}
+    <div>
+        <h4><a href="{% url board-detail board.pk %}">{{ board.name }}</a></h4>
+        <p>{{ board.desc }}</p>
+    </div>
+    {% endfor %}
+{% else %}
+    <p>No boards =(</p>
+{% endif %}
+</div>
+</body>
+</html>
