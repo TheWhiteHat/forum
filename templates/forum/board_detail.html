@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>{{ board.name }}</title>
-    <link rel="stylesheet" type="text/css" href="(% static "forum/style.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "forum/style.css" %}">
 </head>
 <body>
 <div>
@@ -22,7 +22,7 @@
     <tr>
         <td>
             <h4><a href="{% url forum-thread-detail thread.pk %}">{{ thread.name }}</a></h4>
-            <p>by <a href="{% url forum-user-detail thread.creator.pk %}">{{ thread.created.username }}</a> &raquo; {{ thread.created }}</p>
+            <p>by <a href="{% url forum-user-detail thread.creator.pk %}">{{ thread.creator.username }}</a> &raquo; {{ thread.created }}</p>
         </td>
         <td>{{ thread.post_set.count }} replies</td>
         <td>{{ thread.views }} views</td>
