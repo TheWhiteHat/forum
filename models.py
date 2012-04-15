@@ -12,7 +12,6 @@ class Thread(models.Model):
     board = models.ForeignKey(Board)
     creator = models.ForeignKey(User)
     created = models.DateTimeField();
-    posts = models.IntegerField()
     views = models.IntegerField()
     def __unicode__(self):
         return '%s (%s)' % (self.name, self.board.name)

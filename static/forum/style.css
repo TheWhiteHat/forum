@@ -1,0 +1,9 @@
+.ib {
+    display: inline-block;
+    vertical-align: top;
+}
+
+p, h4, {
+    margin: 0;
+    padding: 0;
+}

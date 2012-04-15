@@ -1,0 +1,37 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ board.name }}</title>
+    <link rel="stylesheet" type="text/css" href="(% static "forum/style.css" %}">
+</head>
+<body>
+<div>
+    <h1>{{ board.name }}</h1>
+    <div id="nav-bc">
+        <a href="{% url forum-board-list %}">Home</a> &raquo;
+        <a href="{% url forum-board-detail board.pk %}">{{ board.name }}</a>
+    </div>
+</div>
+
+{% if board.thread_set.all %}
+<!-- don't like tables? then contrib some html/css that isn't horrible voodoo. -->
+<table id="thread-list">
+    {% for thread in board.thread_set.all %}
+    <tr>
+        <td>
+            <h4><a href="{% url forum-thread-detail thread.pk %}">{{ thread.name }}</a></h4>
+            <p>by <a href="{% url forum-user-detail thread.creator.pk %}">{{ thread.created.username }}</a> &raquo; {{ thread.created }}</p>
+        </td>
+        <td>{{ thread.post_set.count }} replies</td>
+        <td>{{ thread.views }} views</td>
+        <td>Last commenter eventually =3</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No threads on this board =/</p>
+{% endif %}
+</body>
+</html>
